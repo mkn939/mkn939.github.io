@@ -15,7 +15,7 @@
     $(document).ready(function() {
         console.log("ready!");
         $.each(data.items, function(idx, item) {
-            console.info(item)
+          
             var template = $($(".item-template").html());
             template.find(".item-img").attr("src", "img/" + item.img[0]);
             template.find(".item-title").text(item.title);
