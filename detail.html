@@ -2,7 +2,6 @@
 
 <head>
     <title>奕瑄女裝</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -11,18 +10,27 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./js/data.js"></script>
+    <script src="./js/utils.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        console.log("ready!");
-        $.each(data.items, function(idx, item) {
-            console.info(item)
-            var template = $($(".item-template").html());
-            template.find(".item-img").attr("src", "img/" + item.img[0]);
-            template.find(".item-title").text(item.title);
-            template.find(".item-price").text("NT " + item.price + "元");
-            template.find(".item-url").attr("href","detail.html?id="+item.id);
-            $(".row").append(template)
-        })
+        console.log("detail ready!");
+        var id = getParameterByName('id')
+        console.log("id:" + id);
+        var item = null;
+        for (var i = 0; i < data.items.length; i++) {
+
+            if (data.items[i].id === id) {
+                item = data.items[i];
+                break;
+            }
+        }
+        console.log(item);
+        var template = $($(".item-template").html());
+        template.find(".item-img").attr("src", "img/" + item.img[0]);
+        template.find(".item-title").text(item.title);
+        template.find(".item-price").text("NT " + item.price + "元");
+        template.find(".item-url").attr("href", "detail.html?id=" + item.id);
+        $(".row").append(template)
 
     });
     </script>
@@ -55,10 +63,6 @@
     .item-template {
         display: none;
     }
-    
-    a {
-        text-decoration: none !important;
-    }
     </style>
 </head>
 
@@ -67,17 +71,15 @@
         <a class="navbar-brand" href="#">奕瑄女裝</a>
     </nav>
     <div class="item-template">
-        <div class="col-sm-6 col-md-4 item-cont">
-            <a class="item-url" href="detail.html" />
-            <div class="thumbnail">
-                <img class="item-img" src="img/id-1-1.jpg" alt="...">
-                <div class="caption">
-                    <h3 class="item-title">小香風褲裙特惠</h3>
-                    <h3 class="item-price">NT 2,284元</h3>
-                </div>
+        <a href="https://pages.github.com/" />
+        <div class="thumbnail">
+            <img class="item-img" src="img/id-1-1.jpg" alt="...">
+            <div class="caption">
+                <h3 class="item-title">小香風褲裙特惠</h3>
+                <h3 class="item-price">NT 2,284元</h3>
             </div>
-            </a>
         </div>
+        </a>
     </div>
     <div>
         <div class="main row">
